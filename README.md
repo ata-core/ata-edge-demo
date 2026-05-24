@@ -2,6 +2,14 @@
 
 A Cloudflare Worker that validates request bodies with [`ata-validator`](https://github.com/ata-core/ata-validator), compiled ahead of time to a static module.
 
+**Live:** https://ata-edge-demo.altinmert.workers.dev
+
+```
+curl -X POST https://ata-edge-demo.altinmert.workers.dev \
+  -H 'content-type: application/json' \
+  -d '{"id":1,"email":"nope","age":9}'
+```
+
 The Workers runtime blocks `eval` and `new Function`. Runtime schema compilation, which is the default for both AJV (`ajv.compile`) and ata (`new Validator`), cannot run there. The answer for both is to compile the schema ahead of time into a static module. This demo does that with ata, and the output has no `eval`, no native addon, and no dependencies, so it runs as-is on Workers (and on Vercel Edge, Deno, or the browser).
 
 ## What this shows
