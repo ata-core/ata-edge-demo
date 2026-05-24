@@ -1,0 +1,3 @@
+name = "ata-edge-demo"
+main = "src/worker.mjs"
+compatibility_date = "2026-05-01"
